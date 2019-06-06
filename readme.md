@@ -4,7 +4,7 @@
 [license-url]: https://raw.githubusercontent.com/n4kz/react-native-material-dropdown/master/license.txt
 [codeclimate-badge]: https://img.shields.io/codeclimate/maintainability/n4kz/react-native-material-dropdown.svg
 [codeclimate-url]: https://codeclimate.com/github/n4kz/react-native-material-dropdown
-[example-url]: https://user-images.githubusercontent.com/2055622/27727487-591a807a-5d87-11e7-89f6-f31a442db0c6.gif
+[example-url]: https://github.com/adriianoakino/react-native-material-dropdown/blob/master/example.gif
 [textinput]: https://facebook.github.io/react-native/docs/textinput.html#props
 [touchable]: https://facebook.github.io/react-native/docs/touchablewithoutfeedback.html#props
 [textfield]: https://github.com/n4kz/react-native-material-textfield#properties
@@ -18,50 +18,13 @@
 Material dropdown with consistent behaviour on iOS and Android
 
 ![example][example-url]
+## Properties
+criador https://github.com/n4kz/react-native-material-dropdown
 
 ## Features
+Implantado icone para avisar que há mais itens, como no principal não havia essa possíbilidade, clonei e adicionei para usar em meu projeto.
 
-* Easy to use
-* Consistent look and feel on iOS and Android
-* Customizable font size, colors and animation duration
-* Dynamic dropdown size and position
-* Configurable visible item count
-* RTL support
-* Pure javascript implementation
 
-## Installation
-
-```bash
-npm install --save react-native-material-dropdown
-```
-
-## Usage
-
-```javascript
-import React, { Component } from 'react';
-import { Dropdown } from 'react-native-material-dropdown';
-
-class Example extends Component {
-  render() {
-    let data = [{
-      value: 'Banana',
-    }, {
-      value: 'Mango',
-    }, {
-      value: 'Pear',
-    }];
-
-    return (
-      <Dropdown
-        label='Favorite Fruit'
-        data={data}
-      />
-    );
-  }
-}
-```
-
-## Properties
 
  name              | description                                   | type     | default
 :----------------- |:--------------------------------------------- | --------:|:------------------
@@ -96,6 +59,9 @@ class Example extends Component {
  labelExtractor    | Extract label from item (args: item, index)   | Function | ({ label }) => label
  propsExtractor    | Extract props from item (args: item, index)   | Function | () => null
  onChangeText      | Selection callback (args: value, index, data) | Function | -
+ iconName          | Name icon - tutorial react native icon        | String   | chevron-down
+ iconType          | Type icon - tutorial react native icon        | String   | entypo
+ iconColor         | Color icon - tutorial react native icon       | String   | #000
 
 Other [TextField][textfield], [TextInput][textinput] and [TouchableWithoutFeedback][touchable] properties will also work
 
@@ -110,17 +76,3 @@ Other [TextField][textfield], [TextInput][textinput] and [TouchableWithoutFeedba
  selectedItem()  | Get selected item              | Object
  isFocused()     | Get current focus state        | Boolean
 
-## Example
-
-```bash
-git clone https://github.com/n4kz/react-native-material-dropdown
-cd react-native-material-dropdown/example
-npm install
-npm run ios # or npm run android
-```
-
-## Copyright and License
-
-BSD License
-
-Copyright 2017-2018 Alexander Nazarov. All rights reserved.
