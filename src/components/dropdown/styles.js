@@ -69,5 +69,8 @@ export default StyleSheet.create({
     height: 22,
     width: '100%',
     borderRadius: 2,
+  },
+  iconHide : {
+    display: 'none'
   }
 });

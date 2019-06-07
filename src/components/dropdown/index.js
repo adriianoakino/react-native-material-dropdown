@@ -19,6 +19,7 @@ import DropdownItem from '../item';
 import styles from './styles';
 import { Icon } from 'react-native-elements'
 
+
 export default class Dropdown extends PureComponent {
   static defaultProps = {
     hitSlop: { top: 6, right: 4, bottom: 6, left: 4 },
@@ -157,9 +158,9 @@ export default class Dropdown extends PureComponent {
 
     supportedOrientations: PropTypes.arrayOf(PropTypes.string),
 
-    iconColor : PropTypes.String,
-    iconType  : PropTypes.String,
-    iconName  : PropTypes.String,
+    iconColor : PropTypes.String || PropTypes.string.isRequired,
+    iconType  : PropTypes.String || PropTypes.string.isRequired,
+    iconName  : PropTypes.String || PropTypes.string.isRequired,
 
     useNativeDriver: PropTypes.bool,
   };
@@ -181,6 +182,7 @@ export default class Dropdown extends PureComponent {
 
     this.keyExtractor = this.keyExtractor.bind(this);
 
+
     this.blur = () => this.onClose();
     this.focus = this.onPress;
 
@@ -194,6 +196,7 @@ export default class Dropdown extends PureComponent {
       selected: -1,
       modal: false,
       value,
+      isScrollEnd: false,
     };
   }
 
@@ -647,8 +650,12 @@ export default class Dropdown extends PureComponent {
     );
   }
 
-  _onScroll = (event) => {
-    console.log(event.nativeEvent.contentOffset.y);
+  _onScroll = (scroll) => {
+    let layoutMeasurement = scroll.nativeEvent.layoutMeasurement.height;
+    let scrollY = scroll.nativeEvent.contentOffset.y;
+    scrollY - (layoutMeasurement - (layoutMeasurement * 0.45))  > 0 ?
+    this.setState({ isScrollEnd: true }) : this.setState({ isScrollEnd: false })
+    
   }
 
   render() {
@@ -681,9 +688,12 @@ export default class Dropdown extends PureComponent {
       disabled,
       itemPadding,
       dropdownPosition,
+      iconColor,
+      iconName,
+      iconType,
     } = props;
 
-    let { left, top, width, opacity, selected, modal } = this.state;
+    let { left, top, width, opacity, selected, modal, isScrollEnd } = this.state;
 
     let itemCount = data.length;
     let visibleItemCount = this.visibleItemCount();
@@ -772,20 +782,20 @@ export default class Dropdown extends PureComponent {
                 contentContainerStyle={styles.scrollContainer}
                 showsVerticalScrollIndicator={true}
                 scrollEventThrottle={16}
-                onScroll={() => {console.log(" visible count [ " + visibleItemCount + " ] => item count [ " + itemCount +" ]")}}
+                onScroll={(e) => this._onScroll(e)}
               />
                {
-                  itemCount > 4 ?
-                    <View style={styles.iconView}>
+                itemCount > 4?
+                  <View style={!isScrollEnd ? styles.iconView : styles.iconHide }>
                     <Icon
-                      type  = {this.iconType}
-                      name  = {this.iconName} 
-                      color = {this.iconColor}  
+                      type  = {iconType}
+                      name  = {iconName} 
+                      color = {iconColor} 
                     />
-                      
-                    </View> 
-                    : 
-                    null
+                    
+                  </View> 
+                  : 
+                  null
                 }
             </View>
            
