@@ -301,6 +301,7 @@ export default class Dropdown extends PureComponent {
         leftInset,
         rightInset,
         selected,
+        isScrollEnd: false,
       });
 
       setTimeout((() => {
@@ -641,6 +642,8 @@ export default class Dropdown extends PureComponent {
       },
     ];
 
+    
+
     return (
       <DropdownItem index={index} {...props}>
         <Text style={[styles.item, itemTextStyle, textStyle]} numberOfLines={1}>
@@ -648,6 +651,7 @@ export default class Dropdown extends PureComponent {
         </Text>
       </DropdownItem>
     );
+    
   }
 
   _onScroll = (scroll) => {
