@@ -659,7 +659,6 @@ export default class Dropdown extends PureComponent {
     let scrollY = scroll.nativeEvent.contentOffset.y;
     scrollY - (layoutMeasurement - (layoutMeasurement * 0.45))  > 0 ?
     this.setState({ isScrollEnd: true }) : this.setState({ isScrollEnd: false })
-    
   }
 
   render() {
@@ -790,10 +789,10 @@ export default class Dropdown extends PureComponent {
               />
                {
                 itemCount > 4?
-                  <View style={!isScrollEnd ? styles.iconView : styles.iconHide }>
+                  <View style={styles.iconView}>
                     <Icon
                       type  = {iconType}
-                      name  = {iconName} 
+                      name  = {!isScrollEnd? iconName : "chevron-up"} 
                       color = {iconColor} 
                     />
                     
