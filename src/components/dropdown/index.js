@@ -20,6 +20,7 @@ import styles from './styles';
 import { Icon } from 'react-native-elements'
 
 
+
 export default class Dropdown extends PureComponent {
   static defaultProps = {
     hitSlop: { top: 6, right: 4, bottom: 6, left: 4 },
@@ -655,9 +656,10 @@ export default class Dropdown extends PureComponent {
   }
 
   _onScroll = (scroll) => {
-    let layoutMeasurement = scroll.nativeEvent.layoutMeasurement.height;
+    let layoutMeasurement = scroll.nativeEvent.contentSize.height;
     let scrollY = scroll.nativeEvent.contentOffset.y;
-    scrollY - (layoutMeasurement - (layoutMeasurement * 0.45))  > 0 ?
+
+    scrollY - (layoutMeasurement - 151)   > 0 ?
     this.setState({ isScrollEnd: true }) : this.setState({ isScrollEnd: false })
   }
 
